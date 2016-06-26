@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MRT Passenger Predictor</title>
+   
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="info.js"></script>
+    <script src="map.js"></script>
+    <link rel="stylesheet" type="text/css" href="map.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  </head>
+
+  <body>
+    <h1>MRT Passenger Predictor</h1>
+    <input type="text" id="datepicker" onchange="dateChange()">
+    <script>
+      $(function($) {
+          $("#datepicker").datepicker({
+            onSelect: function()
+                { 
+                  var d = $("#datepicker").datepicker('getDate').getDate();
+                  if (d < 10) {
+                    d = '0' + d.toString()
+                  }
+                  var m = $("#datepicker").datepicker('getDate').getMonth() + 1;
+                  if (m < 10) {
+                    m = '0' + m.toString()
+                  }
+                  var y = $("#datepicker").datepicker('getDate').getFullYear();
+                  var date = y + "-" + m + "-" + d;
+                  getRadiusMap(date)
+                }  
+          });   
+        });
+    </script>
+    <!-- <div id="floating-panel">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+      <button onclick="changeGradient()">Change Gradient</button>
+      <button onclick="printPoints()">Print Points</button>
+      <button onclick="getRadiusMap()">Get Radius</button>
+      <button onclick="updateMap()">Update</button>
+      <button onclick="changeData()">Change data</button>
+    </div> -->
+    <div id="map"></div>
+    <!-- <div id="chart"></div>
+    <label><input type="checkbox"> Sort values</label> -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key= 
+AIzaSyCuEgCL650HdzYRQSDruRHNKF5P-4fQX38&libraries=visualization&callback=initMap">
+    </script>
+
+  </body>
+</html>
