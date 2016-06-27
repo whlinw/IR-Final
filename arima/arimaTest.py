@@ -13,7 +13,7 @@ testStation = int(arguments[1])
 data = []
 ans = []
 
-with open('./data_sets/mrtOut.csv', 'rb') as mrtOut:
+with open('../data_sets/mrtOut.csv', 'rb') as mrtOut:
     moReader = csv.reader(mrtOut, delimiter=',')
     next(moReader, None)
     i = 0
@@ -24,7 +24,7 @@ with open('./data_sets/mrtOut.csv', 'rb') as mrtOut:
         else:
             ans.append(float(row[testStation]))
 
-arima_mod = sm.tsa.ARIMA(data, (7, 0, 2)).fit()
+arima_mod = sm.tsa.ARIMA(data, (14, 0, 2)).fit()
 
 params = arima_mod.params
 current = len(data)
