@@ -39,9 +39,7 @@ def readpathdf(path):
         df_bfill = df[column_name].fillna(method="bfill").fillna(method="pad")
         df[column_name] = df_pad.add(df_bfill) / 2
 
-
     return df
-
 
 def addDatetime(df):
     cur_date = date(year=2015, month=1, day=1)
@@ -60,13 +58,14 @@ def addDatetime(df):
             weekday.append(0)
     df['weekday'] = weekday
 
+    dayOfWeek = []
+    for x in datetime_list:
+        dayOfWeek.append(x.weekday()+1)
+    df['dayOfWeek'] = dayOfWeek
+
+
+
     del df["CST"]
-
-    #test
-    # for name in df.columns.values:
-    #     if name != "weekday" and name != "datetime":
-    #         del df[name]
-
     return df
 
 def main():

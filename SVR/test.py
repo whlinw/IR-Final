@@ -15,7 +15,7 @@ with open('../data_sets/mrtOut.csv', 'rb') as mrtOut:
     moReader = csv.reader(mrtOut, delimiter=',')
     next(moReader, None)
     for row in moReader:
-        y_data.append(float(row[9]))
+        y_data.append(float(row[42]))
 y_data = np.array(y_data)
 
 df = weather_reader.main_specificTime(date(year=2015,month=1, day=1),
